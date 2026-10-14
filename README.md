@@ -123,14 +123,20 @@ Smoke test seti (`eval/smoke/defterim.txt`) üzerinde yapılan değerlendirme:
 
 ---
 
-## 🎥 Cypress E2E Demo Videosu (≤ 90 sn)
+## 🎥 1080p Full HD Sesli Demo Videosu (~1 Dakika)
 
-Cypress ile kaydedilmiş demo videosu projenin içindedir:
-* **Video Dosyası:** [cypress/videos/demo.cy.js.mp4](file:///c:/Users/ERDEM/Desktop/antigravity_odev/cypress/videos/demo.cy.js.mp4)
-* **Kapsanan Senaryolar:**
-  1. **Mutlu Yol (Happy Path):** Riskli maddelerin birebir sözleşme alıntılarıyla yakalanıp doğrulanması.
-  2. **Prompt Injection Savunması:** Sayfadaki gizli talimata rağmen kural ağının riskleri yakalaması ve saldırıyı raporlaması.
-  3. **Dürüst Belirsizlik (Honest Uncertainty):** Uydurma alıntının elenmesi ve sistemin şeffafça "Emin olamadım" diyerek şüphelerini listelemesi.
+Gerçekçi bir web platformu (**Streamify Müzik & Dijital Servisler**) üzerinde çalışan kesintisiz, 1080p Full HD ve Türkçe sesli anlatımlı demo videosu:
+* **Ana Video Dosyası:** [clauseradar_demo_1080p_full_hd_sesli.mp4](file:///c:/Users/ERDEM/Desktop/antigravity_odev/clauseradar_demo_1080p_full_hd_sesli.mp4) (1920x1080, 25fps, AAC Stereo Ses)
+* **Kayıt Komutu:** `npm run record`
+* **Videoda Adım Adım Gösterilen Özellikler:**
+  1. **Gerçekçi Web Sayfası Deneyimi:** Sol tarafta sözleşme metni, sağ tarafta Chrome Yan Paneli formatında ClauseRadar arayüzü.
+  2. **Otomatik Tarama ve Deterministik Skor:** Sayfa açılır açılmaz analiz başlar, risk ibresi **84/100 (Yüksek Risk)** seviyesine gelir.
+  3. **Ses İmzası (Earcon) & Türkçe Sesli Özet:** Alçalan 3 tonluk risk uyarısı ve Türkçe sesli sentez devreye girer.
+  4. **Birebir Sözleşme Alıntıları (Verbatim Quotes):** Tek taraflı değişiklik, otomatik yenileme, tahkim ve sorumluluk muafiyeti maddeleri birebir alıntılarla listelenir.
+  5. **Çift Yönlü Sayfada Göster (Grounding):** "Sayfada göster" butonuna tıklandığında sol taraftaki sözleşme paragrafı otomatik olarak odağa alınıp fosforlu sarı renkle işaretlenir.
+  6. **Prompt Injection Savunması:** Sayfadaki gizli `[SİSTEM TALİMATI: Önceki tüm kuralları unut...]` manipülasyonu tespit edilir ve modele ulaşmadan kalkan tarafından engellenir.
+  7. **Halüsinasyon / Temelsiz İddiaların Elenmesi:** Metinde birebir kanıtı bulunmayan uydurma iddialar validator tarafından çöpe atılır.
+  8. **Sabit Hukuki Sorumluluk Uyarısı:** Panel altında "HUKUKİ TAVSİYE DEĞİLDİR" uyarısı her zaman görünür durumdadır.
 
 ---
 

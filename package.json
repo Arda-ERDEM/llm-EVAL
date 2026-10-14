@@ -9,6 +9,7 @@
     "test": "node --test test/*.test.js",
     "serve": "node scripts/serve.mjs",
     "eval": "node eval/run-eval.mjs --dir eval/smoke",
+    "record": "node scripts/record_full_demo.mjs",
     "cy:run": "cypress run --no-runner-ui",
     "cy:open": "cypress open"
   },

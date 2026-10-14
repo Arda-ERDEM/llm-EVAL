@@ -26,3 +26,14 @@ pnpm-debug.log*
 *.sw?
 .DS_Store
 Thumbs.db
+
+# Scratch and intermediate demo generation files
+temp_audio/
+test_*.wav
+test_*.mp3
+demo_frame_*.png
+demo_audio_final.wav
+cypress/videos/website_demo.cy.js.mp4
+cypress/videos/clauseradar_website_demo_1080p_sesli.mp4
+clauseradar_demo_1080p_sesli.mp4
+
