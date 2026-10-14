@@ -7,7 +7,7 @@ const stub = scenario => cy.intercept('POST', '**/v1/chat/completions', req => {
 });
 const beat = ms => cy.wait(ms);   // videoda okunabilsin diye kısa duraklar
 
-describe('HakKalkanı (ClauseRadar) Demo', () => {
+describe('ClauseRadar Demo', () => {
   it('1) Mutlu yol: riskli maddeler, birebir alıntılarla', () => {
     stub('happy');
     cy.visit('/panel.html?fixture=happy');   // sayfa açılır açılmaz kendiliğinden tarar; düğmeye basmak gerekmez

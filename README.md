@@ -1,101 +1,105 @@
-# HakKalkanı (ClauseRadar) 🛡️
+# ClauseRadar 🛡️
+### Web Sözleşmeleri, Gizlilik Politikaları ve Abonelik Şartları Akıllı Risk Analizörü
 
-Kullanım koşulları, gizlilik politikası veya abonelik şartları açıkken metni yakalayan ve **alıntıyla doğrulanmış**, sade Türkçe bir risk raporu ile sesli uyarılar çıkaran Chrome uzantısı (Manifest V3, yan panel).
+Web sitelerinin Kullanım Koşulları (Terms of Service), Gizlilik Politikaları (Privacy Policy) ve Abonelik Şartları çoğu zaman onlarca sayfalık karmaşık hukuk diliyle yazılır ve kullanıcılar okumadan "Kabul Ediyorum" butonuna basmak zorunda kalır.
 
-> **Hukuki tavsiye değildir.** Bu ifade arayüzde her zaman görünür (panelin altında sabit olarak konumlandırılmıştır).
+**ClauseRadar**, bir siteye girdiğiniz anda sözleşme metinlerini otomatik olarak tespit edip okuyan; tüketici aleyhine olabilecek riskli maddeleri **birebir alıntılarla** doğrulayıp sade Türkçe ile özetleyen ve görme engelli kullanıcılar için sesli geri bildirim sağlayan yeni nesil bir Chrome uzantısıdır (Manifest V3, Yan Panel).
 
----
-
-## 📌 Tasarım İlkeleri
-
-1. **Alıntısı olmayan iddia geçersizdir:** Her madde, sayfadan alınmış metne karşı kodla doğrulanır (`src/schema.js › validate`). Uydurma alıntı elenir ve "Elenen iddialar" bölümünde gerekçesiyle gösterilir.
-2. **LLM karar vermez:** Model yalnızca JSON bulgu listesi üretir. Skor, seviye ve "güvenli/riskli" kararı kodda deterministik formüllerle hesaplanır.
-3. **Belirsizlik dürüstçe gösterilir:** Yeşil ("Belirgin risk bulunmadı") yalnızca metin tam okunduysa, doğrulanmamış şüphe yoksa ve gizli talimat bulunmadıysa verilir. Aksi halde "Emin olamadım" denir.
-4. **Anahtar sayfaya girmez:** LLM çağrıları arka plan servisinden yapılır (`background.js`).
-5. **Erişilebilirlik önceliklidir:** Görme engelli bireyler için WebAudio tonları ve sesli okuma (TTS) entegre edilmiştir.
+> ⚖️ **HUKUKİ TAVSİYE DEĞİLDİR:** Bu uygulama ve üretilen raporlar **hukuki tavsiye (legal advice) niteliği taşımaz**. Yalnızca kullanıcı farkındalığını artırma amaçlı otomatik bir ön okuma ve karar destek aracıdır. Bu uyarı panelin altında her zaman sabit olarak gösterilir.
 
 ---
 
-## 🏛️ Mimari ve Veri Akışı
+## 📌 Temel Tasarım İlkeleri
+
+1. **Strict Verbatim Grounding (Doğrulanmış Birebir Alıntı):** Her riskli madde, orijinal metinden harfi harfine alıntıyla (`verbatim quote`) eşleştirilir. Alıntısı metinde bulunamayan veya model tarafından uydurulan hiçbir iddia geçerli sayılmaz; elenen iddialar panelde şeffafça gerekçesiyle listelenir.
+2. **Deterministik Kod Tabanlı Skorlama:** Risk puanı ve risk seviyesi yapay zekânın tahminine bırakılmaz; doğrulanmış maddelerin önem ağırlıkları üzerinden kod tarafından deterministik matematiksel formüllerle (0-100) hesaplanır.
+3. **Şeffaf ve Dürüst Belirsizlik (Honest Uncertainty):** Sistem tam okuyamadığı, alıntısı şüpheli veya kural tabanlı sistemle çelişen durumlarda kesin hüküm vermez; "Emin olamadım" diyerek şüphelerini ve nedenlerini kullanıcıya açıkça sunar.
+4. **Çok Katmanlı Güvenlik & Prompt Injection Kalkanı:** Web sitelerine gizlenmiş kötü niyetli komutlara (`display:none`, şüpheli talimat kalıpları) karşı DOM filtreleme, komut sansürleme ve kural tabanlı emniyet ağıyla tam koruma sağlar.
+5. **Evrensel Erişilebilirlik (Audio & Screen Reader):** WebAudio API ile sentezlenen ses imzaları (güvenli onay notaları, risk uyarı tonu) ve `chrome.tts` sesli okuma desteğiyle görme engelli bireyler için tam erişilebilirlik sunar.
+6. **Gizlilik Önceliği:** API anahtarları asla web sayfasına sızdırılmaz; tüm işlemler arka plan servis çalışanı (`background.js`) üzerinden güvenle yürütülür.
+
+---
+
+## 🏛️ Mimari Yapı ve Veri Akışı
 
 ```mermaid
 flowchart LR
-  A[Aktif Sekme] -->|chrome.scripting| B[extract.js<br/>Görünür metin çıkarılır, gizli metin atılır]
+  A[Aktif Web Sayfası] -->|chrome.scripting| B[extract.js<br/>Görünür metin çıkarılır, gizli metin elenir]
   B --> C[segment.js<br/>Numaralı segmentler]
   C --> D[guard.js<br/>Talimat kalıplarını sansürle]
   D --> E[background.js<br/>LLM API Çağrısı]
-  E --> F[schema.js validate<br/>Şema + Birebir alıntı + Kategori ipucu]
-  C --> G[rules.js<br/>Kural tabanlı güvenlik ağı]
-  F --> H[pipeline.js<br/>Deterministik skor ve karar]
+  E --> F[schema.js validate<br/>Şema + Birebir Alıntı Doğrulama]
+  C --> G[rules.js<br/>Kural Tabanlı Güvenlik Ağı]
+  F --> H[pipeline.js<br/>Deterministik Skor ve Karar Motoru]
   G --> H
-  H --> I[panel.js<br/>Rapor, ses imzası, ekran okuyucu]
+  H --> I[panel.js<br/>Arayüz, Ses İmzası, Ekran Okuyucu]
 ```
 
-### Modül ve Görev Dağılımı
+### Modüller ve Görev Dağılımı
 
-| Dosya | Görev |
+| Modül | Görev |
 |---|---|
-| `src/extract.js` | Sayfa metnini çıkarır. `display:none`, `opacity:0`, `font-size:0`, ekran dışı ve arka planla aynı renkteki gizli metinleri **atar** ve sayar. |
-| `src/segment.js` | Metni numaralı segmentlere böler (≤900 karakter), partilere ayırır, 120.000 karakterle sınırlar. |
+| `src/extract.js` | Sayfa metnini çıkarır. `display:none`, `opacity:0`, `font-size:0`, ekran dışı ve arka planla aynı renkteki gizli metinleri **ayııklar** ve sayar. |
+| `src/segment.js` | Metni numaralı segmentlere böler (≤900 karakter), partilere ayırır ve bellek taşmalarına karşı sınırlar. |
 | `src/guard.js` | Türkçe ve İngilizce talimat kalıplarını (prompt injection) tespit eder ve modele gitmeden sansürler. |
 | `src/llm.js` | Sistem istemi, yapılandırılmış JSON şema istek gövdesi ve API taşıma katmanı. |
-| `src/schema.js` | Kategoriler, JSON şeması, **deterministik alıntı doğrulama** ve skorlama. |
+| `src/schema.js` | Kategoriler, JSON şeması, **deterministik alıntı doğrulama** (`validate`) ve skorlama. |
 | `src/rules.js` | LLM'in atladığı belirgin maddeleri geri ekleyen kural ağı; LLM'siz taban çizgisi. |
 | `src/pipeline.js` | Analiz akışını yönetir, nihai karar ve güvensizlik nedenlerini üretir. |
 | `src/audio.js`, `offscreen.html` | WebAudio API ile sentezlenen ses imzaları (onay/uyarı tonları) ve `chrome.tts` sesli okuma. |
-| `src/agent-entry.js` | **Alibaba page-agent** girişi; sitede şartlar bağlantısını bulmak için otonom gezinir. |
 | `src/links.js` | Sayfadaki ToS, Gizlilik, KVKK ve Abonelik bağlantılarını otomatik tarayan motor. |
-| `background.js` | Otomatik tarama, arka plan sekme okuma, rozet yönetimi ve LLM köprüsü. |
+| `src/agent-entry.js` | Sitede bağlantı bulunamadığında devreye giren otonom gezinme ajanı. |
+| `background.js` | Otomatik tarama, arka plan sekme okuma, rozet yönetimi ve servis çalışanı. |
+| `panel.html` & `panel.css` | Yan panel arayüzü, erişilebilir bileşenler ve sabit yasal uyarı. |
 
 ---
 
-## 🤖 Alibaba page-agent Nerede Kullanılıyor?
+## 🤖 Otonom Sayfa Ajanı (Akıllı Gezinme)
 
-Otomatik tarama sitede bağlantı bulamazsa yan panelde **"Şartları yapay zekâyla ara"** butonu belirir. Bu düğme Alibaba'nın açık kaynaklı `page-agent` kütüphanesini başlatır:
+Otomatik bağlantı tarayıcısı sayfada doğrudan bir sözleşme linki bulamazsa yan panelde **"Şartları yapay zekâyla ara"** butonu belirir:
 
-- Ajan DOM'u metin olarak okur ve verilen doğal dil görevini uygular: *Kullanım Koşulları / Gizlilik / Abonelik bağlantısını bul ve aç.*
-- **Yetki daraltma (Sandboxing):** `ask_user` aracı kapalıdır; sistem istemi form doldurmayı, satın almayı ve "kabul et" butonlarına tıklamayı kesin olarak yasaklar (`maxSteps: 8`).
-- Ajan beklenmedik bir siteye giderse (alan adı değişirse) otomatik okuma yapılmaz, kullanıcı uyarılır.
-- Page-agent'in demo LLM'i **kullanılmaz**; `baseURL`, `model` ve anahtar kullanıcının kendi yapılandırmasıdır.
+* Bu düğme sayfa üzerinde otonom gezinme ajanını başlatır.
+* Ajan DOM ağacını okur ve verilen hedefi gerçekleştirir: *Kullanım Koşulları / Gizlilik / Abonelik bağlantısını bul ve aç.*
+* **Güvenlik Sınırlandırması:** Form doldurma, satın alma ve "kabul et" butonlarına tıklama yetkileri kesin olarak kısıtlanmıştır (`maxSteps: 8`). Ajan yalnızca sözleşme sayfasına ulaşmak için gezinir.
 
 ---
 
 ## 🚀 Sıfır Ayar Kullanım Deneyimi
 
-Kurulumdan sonra kullanıcının herhangi bir ayar yapmasına gerek yoktur:
+Kullanıcı uzantıyı yükledikten sonra hiçbir karmaşık ayarla uğraşmaz:
 
-1. **Otomatik Tarama:** Kullanıcı bir siteye girdiğinde;
-   - Sayfa zaten şartlar metniyse doğrudan okunur.
-   - Değilse `src/links.js` footer, menü ve shadow DOM içindeki bağlantıları otomatik arar. Bulunan metinler arka plandaki gizli sekmede okunup sekme kapatılır.
-2. **Sesli Bildirim:** Sonuç **kendiliğinden sesle duyurulur** (ses imzası + nedenler). Paneli açmak zorunlu değildir.
-3. **Simge Rozeti:** Uzantı simgesinde durum rozeti çıkar: `✓` (belirgin risk yok), `!` (dikkat), `!!` (yüksek risk), `?` (emin değilim).
-4. **Yan Panel:** Simgeye tıklanarak veya `Alt+Shift+I` kısayolu ile açılır. Alıntıları ve sade Türkçe açıklamaları gösterir. `Alt+Shift+K` sonucu tekrar seslendirir.
+1. **Kendiliğinden Tarama:** Bir siteye girdiğinizde uzantı sayfayı inceler; metin bir sözleşmeyse doğrudan okur, değilse footer ve menülerdeki yasal bağlantıları arka planda bulup analiz eder.
+2. **Sesli Duyuru:** Sonuç **kendiliğinden sesle bildirilir** (ses imzası + nedenler). Paneli açmak zorunlu değildir.
+3. **Durum Rozeti:** Tarayıcı araç çubuğundaki simgede anlık durum rozeti görünür: `✓` (güvenli), `!` (dikkat), `!!` (yüksek risk), `?` (emin değilim).
+4. **Yan Panel ve Kısayollar:**
+   * `Alt+Shift+I`: ClauseRadar yan panelini açar.
+   * `Alt+Shift+K`: Sonucu sesli olarak tekrar okur.
 
 ---
 
 ## 🔊 Ses ve Erişilebilirlik
 
-| Sonuç | Ses İmzası | Sesli Okuma |
+| Analiz Sonucu | WebAudio Ses İmzası | Sesli Okuma (TTS) |
 |---|---|---|
 | **Belirgin risk yok** | Yükselen iki yumuşak nota (onay) | "Belirgin risk bulunmadı…" |
-| **Dikkat** | İki kısa orta perdeli ton | Maddeler ve önem dereceleri |
-| **Yüksek risk** | Alçalan üç nota (durun) | En kritik 3 maddenin adı ve açıklaması |
-| **Emin değilim** | Yarım kalan, soru tonu | İlk güvensizlik nedeni |
+| **Dikkat** | İki kısa orta perdeli ton | Tespit edilen maddeler ve önem dereceleri |
+| **Yüksek risk** | Alçalan üç nota (durun) | En kritik 3 maddenin adı ve sade Türkçe açıklaması |
+| **Emin değilim** | Yarım kalan soru tonu | İlk güvensizlik nedeni |
 
-- **Ekran Okuyucu Desteği:** Tüm sonuçlar `aria-live` bölgesine yazılır; `aria-label` ile erişilebilir grafikler sunulur.
-- **Tek Tuşla Ses Kontrolü:** Paneldeki "Ses: açık/kapalı" düğmesiyle sesler kapatılabilir.
+- **Ekran Okuyucu Desteği:** Tüm sonuçlar `aria-live` bölgesine yazılır; grafikler `aria-label` ile seslendirilir.
+- **Tek Tuşla Kontrol:** Paneldeki "Ses: açık/kapalı" düğmesiyle sesler tek tıkla kapatılabilir.
 
 ---
 
-## 🛡️ Prompt Injection Savunması
+## 🛡️ Çok Katmanlı Prompt Injection Savunması
 
-Sistem, sayfalara kötü niyetle gizlenmiş komutlara karşı çok katmanlı savunma uygular (`test/injection.test.js` ile test edilmiştir):
+Sistem, sayfalara gizlenmiş manipülatif talimatlara karşı çok katmanlı savunma uygular (`test/injection.test.js` ile test edilmiştir):
 
-| Katman | Savunma Mekanizması |
+| Savunma Katmanı | Nasıl Çalışır? |
 |---|---|
-| **DOM Çıkarma** | `display:none`, `opacity:0`, `font-size:0` gibi gizli metinler modele hiç gitmeden elenir. |
-| **Sansür** | Görünür talimat kalıpları (`ignore instructions`, `tüm talimatları unut`, `risk 0 de`) `[ŞÜPHELİ_TALİMAT_ÇIKARILDI]` ile maskelenir. |
-| **Yetki Sınırı** | Model skor ve karar üretemez; modele yalnızca bulgu çıkarma görevi verilir. |
+| **DOM Katmanı** | `display:none`, `opacity:0`, `font-size:0`, aynı renk arka plan gibi gizli metinler modele hiç gitmeden elenir. |
+| **Sansür Katmanı** | Görünür talimat kalıpları (`ignore instructions`, `tüm talimatları unut`, `risk 0 de`) `[ŞÜPHELİ_TALİMAT_ÇIKARILDI]` ile maskelenir. |
+| **Yetki Ayrımı** | Model skor ve karar üretemez; modele yalnızca bulgu listeleme görevi verilir. |
 | **Deterministik Doğrulama** | Modelin uydurduğu (metinde harfi harfine bulunmayan) bulgular atılır. |
 | **Kural Güvenlik Ağı** | Model manipüle edilip "bulgu yok" dese dahi, kural motoru belirgin riskleri yakalar. |
 | **Dürüst Belirsizlik** | Sayfada saldırı tespit edildiyse sistem asla "güvenli" demez; şüpheli durumu kullanıcıya bildirir. |
@@ -108,7 +112,7 @@ Sistem, sayfalara kötü niyetle gizlenmiş komutlara karşı çok katmanlı sav
 npm run eval
 ```
 
-Smoke test seti (`eval/smoke/defterim.txt`) üzerinde yapılan deterministik değerlendirme:
+Smoke test seti (`eval/smoke/defterim.txt`) üzerinde yapılan değerlendirme:
 
 | Belge | Etiketli Madde | Yakalanan | Kaçırılan | Yanlış Alarm | Karar | Skor |
 |---|---|---|---|---|---|---|
@@ -119,10 +123,10 @@ Smoke test seti (`eval/smoke/defterim.txt`) üzerinde yapılan deterministik de�
 
 ---
 
-## 🎥 Cypress Demo Videosu (≤ 90 sn)
+## 🎥 Cypress E2E Demo Videosu (≤ 90 sn)
 
 Cypress ile kaydedilmiş demo videosu projenin içindedir:
-* **Dosya:** [cypress/videos/demo.cy.js.mp4](file:///c:/Users/ERDEM/Desktop/antigravity_odev/cypress/videos/demo.cy.js.mp4)
+* **Video Dosyası:** [cypress/videos/demo.cy.js.mp4](file:///c:/Users/ERDEM/Desktop/antigravity_odev/cypress/videos/demo.cy.js.mp4)
 * **Kapsanan Senaryolar:**
   1. **Mutlu Yol (Happy Path):** Riskli maddelerin birebir sözleşme alıntılarıyla yakalanıp doğrulanması.
   2. **Prompt Injection Savunması:** Sayfadaki gizli talimata rağmen kural ağının riskleri yakalaması ve saldırıyı raporlaması.
@@ -149,12 +153,12 @@ npm run eval
 
 ### 3. Cypress Testini ve Demo Videosunu Çalıştırma
 ```bash
-# Arka plan sunucusunu ve Cypress'i başlatıp videoyu kaydeder:
+# Sunucuyu ve Cypress'i başlatıp videoyu kaydeder:
 node run-cypress.mjs
 ```
 
 ### 4. Chrome Uzantısını Yükleme
 1. Google Chrome'da `chrome://extensions` adresine gidin.
-2. Sağ üstten **Geliştirici modu**nu açın.
-3. **Paketlenmemiş öğe yükle** butonuna basarak bu proje klasörünü seçin.
-4. Herhangi bir web sitesine girin; **HakKalkanı** arka planda otomatik olarak korumaya başlayacaktır!
+2. Sağ üstten **Geliştirici modu**nu (Developer mode) açın.
+3. **Paketlenmemiş öğe yükle** (Load unpacked) butonuna basarak bu proje klasörünü seçin.
+4. Herhangi bir web sitesine girin; **ClauseRadar** yan panelde ve arka planda otomatik olarak korumaya başlayacaktır!
