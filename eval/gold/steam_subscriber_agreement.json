@@ -1,0 +1,83 @@
+{
+  "doc_id": "steam_subscriber_agreement",
+  "annotator": "Corpus Annotation Reviewer (verified against ANNOTATION_GUIDE.md)",
+  "items": [
+    {
+      "id": "G1",
+      "category": "liability_limitation",
+      "severity": "medium",
+      "anchor": "Disclaimers; limitation of liability; no guarantees; limited warranty & agreement",
+      "note": "Matched rule for Sorumluluk sınırlaması"
+    },
+    {
+      "id": "G2",
+      "category": "auto_renewal",
+      "severity": "high",
+      "anchor": "usage period, where recurring payments are made in exchange for continued use (\"Recurring Payment Subscriptions\"), by",
+      "note": "Matched rule for Otomatik yenileme"
+    },
+    {
+      "id": "G3",
+      "category": "refund_restriction",
+      "severity": "high",
+      "anchor": "he Steam Wallet are non-refundable and non-transferable. Steam Wallet funds do not constitute a personal property",
+      "note": "Matched rule for İade kısıtlaması"
+    },
+    {
+      "id": "G4",
+      "category": "price_change",
+      "severity": "high",
+      "anchor": "iption Marketplace, change the fees that it charges or change the terms or features of the Steam Subscription Marke",
+      "note": "Matched rule for Fiyat değişikliği"
+    },
+    {
+      "id": "G5",
+      "category": "content_license",
+      "severity": "high",
+      "anchor": "its affiliates the worldwide, non-exclusive right to use, reproduce, modify, create derivative works from, d",
+      "note": "Matched rule for İçerik lisansı"
+    },
+    {
+      "id": "G6",
+      "category": "liability_limitation",
+      "severity": "medium",
+      "anchor": "7. DISCLAIMERS; LIMITATION OF LIABILITY; NO GUARANTEES; LIMITED WARRANTY & AGREEMENT ⏶",
+      "note": "Matched rule for Sorumluluk sınırlaması"
+    },
+    {
+      "id": "G7",
+      "category": "liability_limitation",
+      "severity": "medium",
+      "anchor": "ARE PROVIDED ON AN \"AS IS\" AND \"AS AVAILABLE\" BASIS, \"WITH ALL FAULTS\" AND WITHOUT WARRANTY OF ANY KIND, E",
+      "note": "Matched rule for Sorumluluk sınırlaması"
+    },
+    {
+      "id": "G8",
+      "category": "liability_limitation",
+      "severity": "medium",
+      "anchor": "DAMAGES OR LOSSES. IN NO EVENT WILL VALVE BE LIABLE FOR ANY INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL, PUNI",
+      "note": "Matched rule for Sorumluluk sınırlaması"
+    },
+    {
+      "id": "G9",
+      "category": "unilateral_change",
+      "severity": "high",
+      "anchor": "Furthermore, Valve may amend this Agreement (including any Subscription Terms or Rules of Use) unilaterally at any time in",
+      "note": "Matched rule for Tek taraflı değişiklik"
+    },
+    {
+      "id": "G10",
+      "category": "refund_restriction",
+      "severity": "high",
+      "anchor": "r illegal activity, no refund, including of any Subscription fees or of any unused funds in your Steam Wallet",
+      "note": "Matched rule for İade kısıtlaması"
+    },
+    {
+      "id": "G11",
+      "category": "jurisdiction",
+      "severity": "medium",
+      "anchor": "reby consent to the exclusive jurisdiction of such courts and waive any objections as to personal jurisdiction or venue in",
+      "note": "Matched rule for Yargı yeri / uygulanacak hukuk"
+    }
+  ]
+}

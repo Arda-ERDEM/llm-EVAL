@@ -1,0 +1,118 @@
+{
+  "doc_id": "spotify_tr_tos",
+  "annotator": "Corpus Annotation Reviewer (verified against ANNOTATION_GUIDE.md)",
+  "items": [
+    {
+      "id": "G1",
+      "category": "liability_limitation",
+      "severity": "medium",
+      "anchor": "a paylaştıklarından sorumlu değildir.",
+      "note": "Matched rule for Sorumluluk sınırlaması"
+    },
+    {
+      "id": "G2",
+      "category": "liability_limitation",
+      "severity": "medium",
+      "anchor": "eklamlardan Spotify sorumlu değildir.",
+      "note": "Matched rule for Sorumluluk sınırlaması"
+    },
+    {
+      "id": "G3",
+      "category": "liability_limitation",
+      "severity": "medium",
+      "anchor": "i hiçbir işlem için sorumlu değildir. Sizin tarafınızdan Spotify'dan alınan sözlü ya da yazılı hiçbir tavsiye ya da",
+      "note": "Matched rule for Sorumluluk sınırlaması"
+    },
+    {
+      "id": "G4",
+      "category": "arbitration_class_waiver",
+      "severity": "high",
+      "anchor": "bir (1) yıl içinde (tahkim talebinde bulunarak veya aşağıdaki tahkim anlaşması kapsamında bireysel bir dav",
+      "note": "Matched rule for Tahkim / toplu dava feragati"
+    },
+    {
+      "id": "G5",
+      "category": "liability_limitation",
+      "severity": "medium",
+      "anchor": "n ya da içeriğinden sorumlu değildir. Apple, Spotify Hizmeti ile ilgili olarak hiçbir bakım veya destek hizmeti sunm",
+      "note": "Matched rule for Sorumluluk sınırlaması"
+    },
+    {
+      "id": "G6",
+      "category": "indemnification",
+      "severity": "medium",
+      "anchor": "arşısında Spotify'ı tazmin etmeyi ve beri kılmayı kabul edersiniz: (1) bu Şartlar'ı ihlal etmeniz (buraya",
+      "note": "Matched rule for Tazmin yükümlülüğü"
+    },
+    {
+      "id": "G7",
+      "category": "arbitration_class_waiver",
+      "severity": "high",
+      "anchor": "nun Seçimi, Zorunlu Tahkim ve Yargı Yeri",
+      "note": "Matched rule for Tahkim / toplu dava feragati"
+    },
+    {
+      "id": "G8",
+      "category": "arbitration_class_waiver",
+      "severity": "high",
+      "anchor": "e aşağıdaki zorunlu tahkim hükümleri sizin için geçerlidir:",
+      "note": "Matched rule for Tahkim / toplu dava feragati"
+    },
+    {
+      "id": "G9",
+      "category": "arbitration_class_waiver",
+      "severity": "high",
+      "anchor": "bağlayıcı bireysel tahkim ile çözümleneceğini kabul edesiniz. Tahkim, mahkemede görülen bir davaya göre d",
+      "note": "Matched rule for Tahkim / toplu dava feragati"
+    },
+    {
+      "id": "G10",
+      "category": "indemnification",
+      "severity": "medium",
+      "anchor": "bir mahkemeyle aynı tazminat ve zararın telafisi kararını verebilir (avukatlık ücretleri dahil) ancak hake",
+      "note": "Matched rule for Tazmin yükümlülüğü"
+    },
+    {
+      "id": "G11",
+      "category": "arbitration_class_waiver",
+      "severity": "high",
+      "anchor": "Tahkim işlemleri sizin tarafınızdan ya da bizim tarafımızdan başlatılabilir. Sizinle S",
+      "note": "Matched rule for Tahkim / toplu dava feragati"
+    },
+    {
+      "id": "G12",
+      "category": "arbitration_class_waiver",
+      "severity": "high",
+      "anchor": "Tüm tahkimler, iddiada bulunan tarafın iddiaya yol açan eylemi, ihmali ya da kusuru ilk öğ",
+      "note": "Matched rule for Tahkim / toplu dava feragati"
+    },
+    {
+      "id": "G13",
+      "category": "arbitration_class_waiver",
+      "severity": "high",
+      "anchor": "Tahkime başvurmak isteyen bir taraf, öncelikle taahhütlü postayla ya da Federal Expres",
+      "note": "Matched rule for Tahkim / toplu dava feragati"
+    },
+    {
+      "id": "G14",
+      "category": "indemnification",
+      "severity": "medium",
+      "anchor": "ve (2) istenen özel tazmin kararı (\"Talep\") belirtilmelidir. İddiayı doğrudan çözümlemek için iyi niyetle",
+      "note": "Matched rule for Tazmin yükümlülüğü"
+    },
+    {
+      "id": "G15",
+      "category": "arbitration_class_waiver",
+      "severity": "high",
+      "anchor": "Spotify bu tahkim hükmünde gelecekte herhangi bir değişiklik (Spotify'ın Bildirim adresi değişikl",
+      "note": "Matched rule for Tahkim / toplu dava feragati"
+    },
+    {
+      "id": "G16",
+      "category": "arbitration_class_waiver",
+      "severity": "high",
+      "anchor": "lu dava feragatinin tahkimde yürütülemez olduğu ya da bu 6.3. Madde'nin herhangi bir kısmının geçersiz ya",
+      "note": "Matched rule for Tahkim / toplu dava feragati"
+    }
+  ]
+}

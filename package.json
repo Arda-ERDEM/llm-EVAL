@@ -1,0 +1,36 @@
+{
+  "name": "antigravity_odev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "build": "node build.mjs",
+    "eval:fetch": "node eval/fetch-corpus.mjs",
+    "eval:check-gold": "node eval/check-gold.mjs",
+    "eval:run": "node eval/run-eval.mjs",
+    "cypress:run": "cypress run",
+    "cypress:open": "cypress open"
+  },
+  "dependencies": {
+    "@page-agent/page-controller": "^1.12.4",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@puppeteer/browsers": "^3.2.4",
+    "@types/chrome": "^0.3.5",
+    "@types/node": "^26.6.5",
+    "cypress": "^16.1.1",
+    "dotenv": "^18.0.7",
+    "esbuild": "^0.28.2",
+    "linkedom": "^0.18.13",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.4"
+  },
+  "allowScripts": {
+    "cypress@16.1.1": true,
+    "esbuild@0.28.2": true
+  }
+}

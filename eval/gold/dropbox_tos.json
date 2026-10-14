@@ -1,0 +1,48 @@
+{
+  "doc_id": "dropbox_tos",
+  "annotator": "Corpus Annotation Reviewer (verified against ANNOTATION_GUIDE.md)",
+  "items": [
+    {
+      "id": "G1",
+      "category": "price_change",
+      "severity": "high",
+      "anchor": "Changes. We may change the fees in effect on renewal of your subscription, to reflect factors such as changes t",
+      "note": "Matched rule for Fiyat değişikliği"
+    },
+    {
+      "id": "G2",
+      "category": "liability_limitation",
+      "severity": "medium",
+      "anchor": "RVICES ARE PROVIDED \"AS IS.\" WE ALSO DISCLAIM ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR",
+      "note": "Matched rule for Sorumluluk sınırlaması"
+    },
+    {
+      "id": "G3",
+      "category": "jurisdiction",
+      "severity": "medium",
+      "anchor": "ents. The venue and exclusive jurisdiction provision above does not apply to North Carolina consumers with respect to clai",
+      "note": "Matched rule for Yargı yeri / uygulanacak hukuk"
+    },
+    {
+      "id": "G4",
+      "category": "jurisdiction",
+      "severity": "medium",
+      "anchor": "m, you agree to the exclusive jurisdiction of the state and federal courts in San Francisco County, California to resolve",
+      "note": "Matched rule for Yargı yeri / uygulanacak hukuk"
+    },
+    {
+      "id": "G5",
+      "category": "arbitration_class_waiver",
+      "severity": "high",
+      "anchor": "Class arbitrations, class actions, private attorney general actions, and consolidation with other arbitrations a",
+      "note": "Matched rule for Tahkim / toplu dava feragati"
+    },
+    {
+      "id": "G6",
+      "category": "unilateral_change",
+      "severity": "high",
+      "anchor": "We may revise these Terms to better reflect:",
+      "note": "Matched rule for Tek taraflı değişiklik"
+    }
+  ]
+}

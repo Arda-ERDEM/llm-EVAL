@@ -1,0 +1,104 @@
+{
+  "doc_id": "spotify_us_tos",
+  "annotator": "Corpus Annotation Reviewer (verified against ANNOTATION_GUIDE.md)",
+  "items": [
+    {
+      "id": "G1",
+      "category": "unilateral_change",
+      "severity": "high",
+      "anchor": "al terms and how we may change these Terms or the additional terms incorporated by reference. To learn more about how Spot",
+      "note": "Matched rule for Tek taraflı değişiklik"
+    },
+    {
+      "id": "G2",
+      "category": "arbitration_class_waiver",
+      "severity": "high",
+      "anchor": "URT PROCEEDINGS, OR CLASS ACTIONS OF ANY KIND. IN ARBITRATION THERE IS LESS DISCOVERY AND APPELLATE REVIEW THAN",
+      "note": "Matched rule for Tahkim / toplu dava feragati"
+    },
+    {
+      "id": "G3",
+      "category": "refund_restriction",
+      "severity": "high",
+      "anchor": "required by law, we do not provide refunds or credits for any partial subscription periods, except as expressly stated in",
+      "note": "Matched rule for İade kısıtlaması"
+    },
+    {
+      "id": "G4",
+      "category": "content_license",
+      "severity": "high",
+      "anchor": "sive, transferable, sublicensable, royalty-free, fully paid, irrevocable, worldwide license to reproduce, mak",
+      "note": "Matched rule for İçerik lisansı"
+    },
+    {
+      "id": "G5",
+      "category": "liability_limitation",
+      "severity": "medium",
+      "anchor": "SERVICE IS PROVIDED \"AS IS\" AND \"AS AVAILABLE,\" WITHOUT ANY WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIE",
+      "note": "Matched rule for Sorumluluk sınırlaması"
+    },
+    {
+      "id": "G6",
+      "category": "liability_limitation",
+      "severity": "medium",
+      "anchor": "BY APPLICABLE LAW, IN NO EVENT WILL SPOTIFY, ITS OFFICERS, SHAREHOLDERS, EMPLOYEES, AGENTS, DIRECTORS, SUBSIDI",
+      "note": "Matched rule for Sorumluluk sınırlaması"
+    },
+    {
+      "id": "G7",
+      "category": "liability_limitation",
+      "severity": "medium",
+      "anchor": "nd Spotify; and (2) in no event shall these Terms create any third-party beneficiary rights.",
+      "note": "Matched rule for Sorumluluk sınırlaması"
+    },
+    {
+      "id": "G8",
+      "category": "indemnification",
+      "severity": "medium",
+      "anchor": "You agree to indemnify and hold Spotify harmless from and against all damages, losses, and expenses o",
+      "note": "Matched rule for Tazmin yükümlülüğü"
+    },
+    {
+      "id": "G9",
+      "category": "arbitration_class_waiver",
+      "severity": "high",
+      "anchor": "law, jurisdiction, class action waiver, and jury trial waiver",
+      "note": "Matched rule for Tahkim / toplu dava feragati"
+    },
+    {
+      "id": "G10",
+      "category": "jurisdiction",
+      "severity": "medium",
+      "anchor": "potify agree to the exclusive jurisdiction of the federal or state courts located in New York, New York, to resolve any Di",
+      "note": "Matched rule for Yargı yeri / uygulanacak hukuk"
+    },
+    {
+      "id": "G11",
+      "category": "arbitration_class_waiver",
+      "severity": "high",
+      "anchor": "aive any right to a jury trial.",
+      "note": "Matched rule for Tahkim / toplu dava feragati"
+    },
+    {
+      "id": "G12",
+      "category": "arbitration_class_waiver",
+      "severity": "high",
+      "anchor": "law, jurisdiction, class action waiver, and jury trial waiver\" section above, seeking only temporary or prelimi",
+      "note": "Matched rule for Tahkim / toplu dava feragati"
+    },
+    {
+      "id": "G13",
+      "category": "arbitration_class_waiver",
+      "severity": "high",
+      "anchor": "law, jurisdiction, class action waiver, and jury trial waiver\" section above. To the fullest extent permitted b",
+      "note": "Matched rule for Tahkim / toplu dava feragati"
+    },
+    {
+      "id": "G14",
+      "category": "content_license",
+      "severity": "high",
+      "anchor": "rt, nor transfer or sublicense your rights under these Terms to any third party.",
+      "note": "Matched rule for İçerik lisansı"
+    }
+  ]
+}

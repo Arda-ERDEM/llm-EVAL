@@ -1,0 +1,48 @@
+{
+  "doc_id": "spotify_privacy",
+  "annotator": "Corpus Annotation Reviewer (verified against ANNOTATION_GUIDE.md)",
+  "items": [
+    {
+      "id": "G1",
+      "category": "tracking_profiling",
+      "severity": "high",
+      "anchor": "based advertising, targeted advertising, or what some states may define as, ‘sharing or selling’ for purposes of cross-",
+      "note": "Matched rule for İzleme ve profilleme"
+    },
+    {
+      "id": "G2",
+      "category": "tracking_profiling",
+      "severity": "high",
+      "anchor": "will only use your precise location data with your permission. You can grant this access through the in-app pop-up",
+      "note": "Matched rule for İzleme ve profilleme"
+    },
+    {
+      "id": "G3",
+      "category": "tracking_profiling",
+      "severity": "high",
+      "anchor": "IP addresses to non-precise location data (e.g., country or region, city, state).",
+      "note": "Matched rule for İzleme ve profilleme"
+    },
+    {
+      "id": "G4",
+      "category": "tracking_profiling",
+      "severity": "high",
+      "anchor": "all users, based on precise location data (where available and explicitly permitted by you).",
+      "note": "Matched rule for İzleme ve profilleme"
+    },
+    {
+      "id": "G5",
+      "category": "data_sharing",
+      "severity": "high",
+      "anchor": "We do not disclose personal data to advertising partners for users under the age of 18.",
+      "note": "Matched rule for Üçüncü taraflarla veri paylaşımı"
+    },
+    {
+      "id": "G6",
+      "category": "data_sharing",
+      "severity": "high",
+      "anchor": "ge of 18, we do not disclose personal data to marketing partners by default.",
+      "note": "Matched rule for Üçüncü taraflarla veri paylaşımı"
+    }
+  ]
+}
