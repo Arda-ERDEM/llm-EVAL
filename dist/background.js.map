@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../src/extension/background.ts"],
-  "sourcesContent": ["// Chrome Extension Background Service Worker\n\nchrome.runtime.onInstalled.addListener(() => {\n  console.log('ToS Risk Radar extension installed successfully.');\n});\n\n// Relay messages between popup and active tab content script if needed\nchrome.runtime.onMessage.addListener((message, sender, sendResponse) => {\n  if (message.type === 'PING') {\n    sendResponse({ status: 'PONG' });\n    return true;\n  }\n});\n"],
-  "mappings": ";;;AAEA,SAAO,QAAQ,YAAY,YAAY,MAAM;AAC3C,YAAQ,IAAI,kDAAkD;AAAA,EAChE,CAAC;AAGD,SAAO,QAAQ,UAAU,YAAY,CAAC,SAAS,QAAQ,iBAAiB;AACtE,QAAI,QAAQ,SAAS,QAAQ;AAC3B,mBAAa,EAAE,QAAQ,OAAO,CAAC;AAC/B,aAAO;AAAA,IACT;AAAA,EACF,CAAC;",
-  "names": []
-}

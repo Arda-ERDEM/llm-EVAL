@@ -1,16 +1,14 @@
 import http from 'node:http';
 import { spawn as execSpawn } from 'node:child_process';
-import path from 'node:path';
 
-// Start server
-console.log('Starting demo server...');
-const serverProc = execSpawn('node', ['server.mjs'], { stdio: 'inherit', shell: true });
+console.log('Starting static demo server (scripts/serve.mjs)...');
+const serverProc = execSpawn('node', ['scripts/serve.mjs'], { stdio: 'inherit', shell: true });
 
-function waitForServer(retries = 20) {
+function waitForServer(retries = 25) {
   return new Promise((resolve, reject) => {
     const check = (count) => {
       http
-        .get('http://127.0.0.1:8080/demo/index.html', (res) => {
+        .get('http://localhost:4173/panel.html?fixture=happy', (res) => {
           if (res.statusCode === 200) {
             console.log('Server is healthy! Launching Cypress...');
             resolve();
@@ -25,7 +23,7 @@ function waitForServer(retries = 20) {
 
     const retry = (count) => {
       if (count <= 0) return reject(new Error('Server failed to start in time.'));
-      setTimeout(() => check(count - 1), 500);
+      setTimeout(() => check(count - 1), 400);
     };
 
     check(retries);
@@ -35,7 +33,7 @@ function waitForServer(retries = 20) {
 async function main() {
   try {
     await waitForServer();
-    console.log('Executing: npx cypress run --no-runner-ui...');
+    console.log('Executing Cypress with --no-runner-ui...');
     const cypressProc = execSpawn(
       'npx',
       ['cypress', 'run', '--no-runner-ui'],
